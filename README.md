@@ -9,4 +9,4 @@ Currently v2
 ---------------------------------------
 ### Changelog
 
-Markdown Previewer v1 on (Code-pen)[https://codepen.io/haleyelder/full/wOGxZV]. Had to use the 'marked' library and pass test suites per the curriculum. 
+Markdown Previewer v1 on [Codepen](https://codepen.io/haleyelder/full/wOGxZV). Had to use the 'marked' library and pass test suites per the curriculum. 
