@@ -1,16 +1,9 @@
-import React from 'react'
-import Header from './Header'
-import Footer from './Footer'
-import marked from 'marked'
+import React, { useState } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import { useMarked } from 'use-marked-hook'
 
-marked.setOptions({
-  renderer: new marked.Renderer(),
-  gfm: true,
-  breaks: true,
-});
-
-const defaultPreview =
-`# Welcome to my React Markdown Previewer!
+const defaultPreview = `# Welcome to my React Markdown Previewer!
 
   ## This is a sub-heading...
   ### And here's some other cool stuff:
@@ -57,53 +50,28 @@ const defaultPreview =
   ![React Logo w/ Text](https://goo.gl/Umyytc)
   `;
 
-class MarkdownPreviewer extends React.Component {
-    constructor(props) {	
-      super(props);
-      this.state = {
-              input: defaultPreview
-          }
-          this.handleChange = this.handleChange.bind(this);		
-    };
-      
-      convertMarkdown() {
-          let markdown = marked(this.state.input);
-          return{__html: markdown}
-      }
-      
-       handleChange(event) {
-      this.setState({
-              input: event.target.value
-          });
-    }
-      
-  
-   render() {	 
-       return (
-              <div>
-               <Header/>	
-                  {/* input */}
-               <textarea value={this.state.input} id="editor" onChange={event => this.handleChange(event)} />
-                  {/* output */}
-                  <div className = "output">				
-                      <div id="preview" dangerouslySetInnerHTML={this.convertMarkdown()}></div>
-                  </div>
-              </div>		 
-          );
-    }
-  }
+const MarkdownPreviewer = () => {
+  const [markdown, setMarkdown] = useState(defaultPreview);
 
-//   const MarkdownPreviewer = () => {
-//       return (
-//           <>
-//             <Header/>
-//             <div>
-//                 Previewer
-//             </div>
-//             <Footer/>
-//         </>
-//       )
-//   }
+  const html = useMarked(markdown)
 
+  return (
+    <>
+        <Header />
+        {/* input */}
+        <textarea
+          value={markdown}
+          className="editor"
+          onChange={event => setMarkdown(event.target.value)}
+        />
+        {/* output */}
+       
+       <div className="output">
+         <div dangerouslySetInnerHTML={{__html: html}}/>
+        </div>
+       <Footer />
+    </>
+  );
+};
 
 export default MarkdownPreviewer
