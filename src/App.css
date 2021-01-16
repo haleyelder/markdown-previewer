@@ -2,27 +2,36 @@
     text-align: center;
     background-color: darkslategray;
     color:white;
-    padding:10px;
+    padding: 2px;
     border-bottom: 8px solid darkturquoise;
 }
 
-textarea,
-.output {
-    height: 890px;
+textarea {
+    height: 600px;
+    width:100%;
+}
+.editor {	
+    float: left;
+    padding:20px;
     width: 45%;
-    display: inline-block;
-    resize: none;
 }
 
-footer {
-    padding: 10px;
-    background-color: #333;
-    color: white;
-    margin-top: 30px;
-    text-align: center;
-    border:none;
+.output {
+    width: 45%;
+    height: 500px;
+    float: left;
 }
 
-footer a {
+
+.md-reference a {
     color: darkturquoise;
+    text-decoration: none;
+    border: 2px solid darkturquoise;
+    padding:5px;
+}
+
+.md-reference a:hover {
+    background-color: white;
+    color: darkslategray;
+    border: 2px solid darkslategray;
 }

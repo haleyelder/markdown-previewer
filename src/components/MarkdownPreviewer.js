@@ -1,54 +1,12 @@
 import React, { useState } from "react";
 import Header from "./Header";
-import Footer from "./Footer";
 import { useMarked } from 'use-marked-hook'
 
-const defaultPreview = `# Welcome to my React Markdown Previewer!
+const defaultPreview = `# Type your text on the left
 
-  ## This is a sub-heading...
-  ### And here's some other cool stuff:
-    
-  Here's some code, \`<div></div>\`, between 2 backticks.
+## and live preview on the right
 
-  \`\`\`
-  // this is multi-line code:
-
-  function anotherExample(firstLine, lastLine) {
-    if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
-      return multiLineCode;
-    }
-  }
-  \`\`\`
-    
-  You can also make text **bold**... whoa!
-  Or _italic_.
-  Or... wait for it... **_both!_**
-  And feel free to go crazy ~~crossing stuff out~~.
-
-  There's also [links](https://www.freecodecamp.com), and
-   > Block Quotes!
-
-  And if you want to get really crazy, even tables:
-
-  Wild Header | Crazy Header | Another Header?
-  ------------ | ------------- | ------------- 
-  Your content can | be here, and it | can be here....
-  And here. | Okay. | I think we get it.
-
-  - And of course there are lists.
-    - Some are bulleted.
-        - With different indentation levels.
-          - That look like this.
-
-
-  1. And there are numbererd lists too.
-  1. Use just 1s if you want! 
-  1. But the list goes on...
-  - Even if you use dashes or asterisks.
-  * And last but not least, let's not forget embedded images:
-
-  ![React Logo w/ Text](https://goo.gl/Umyytc)
-  `;
+### markdown styling reference above :)`;
 
 const MarkdownPreviewer = () => {
   const [markdown, setMarkdown] = useState(defaultPreview);
@@ -59,17 +17,19 @@ const MarkdownPreviewer = () => {
     <>
         <Header />
         {/* input */}
+        <div className="editor">
         <textarea
           value={markdown}
-          className="editor"
           onChange={event => setMarkdown(event.target.value)}
+          cols="30" 
+          rows="5"
         />
-        {/* output */}
-       
+        </div>
+
+        {/* output */}       
        <div className="output">
          <div dangerouslySetInnerHTML={{__html: html}}/>
         </div>
-       <Footer />
     </>
   );
 };
